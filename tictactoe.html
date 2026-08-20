@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tic Tac Toe</title>
+</head>
+<style>
+    * {
+        padding: 0%;
+        margin: 0%;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: blueviolet;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main {
+        height: 400px;
+        width: 400px;
+        background-color: blue;
+        border: 10px solid rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .box {
+        height: 120px;
+        width: 120px;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .row {
+        display: flex;
+        /* background-color: azure; */
+        gap: 10px;
+        width: 400px;
+        height: 130px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .line {
+        background-color: red;
+        height: 10px;
+        width: 110px;
+        border-radius: 30px;
+        /* display: none; */
+    }
+
+    .line1 {
+        rotate: 45deg;
+        position: absolute;
+    }
+
+    .line2 {
+        rotate: -45deg;
+    }
+
+    .circle {
+        display: none;
+    }
+
+    .circleout {
+        background-color: green;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .circlein {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        background-color: aqua;
+    }
+
+    .cross {
+        display: none;
+    }
+
+    .heading{
+        color: black;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 36px;
+        text-decoration: underline;
+    }
+    .score{
+        color: black;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 36px;
+    }
+</style>
+
+<body>
+    <div class="heading">Tic Tac Toe</div>
+    <div class="circle">
+        <div class="circleout">
+            <div class="circlein"></div>
+        </div>
+    </div>
+    <div class="cross">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+    </div>
+    <div class="main">
+        <div class="row row1">
+            <div class="box box1"></div>
+            <div class="box box2"></div>
+            <div class="box box3"></div>
+        </div>
+        <div class="row row2">
+            <div class="box box4"></div>
+            <div class="box box5"></div>
+            <div class="box box6"></div>
+        </div>
+        <div class="row row3">
+            <div class="box box7"></div>
+            <div class="box box8"></div>
+            <div class="box box9"></div>
+        </div>
+    </div>
+    <div class="score">Score :</div>
+    </div>
+
+    <script>
+        let circle = document.querySelector(".circle");
+        let cross = document.querySelector(".cross");
+        let box = document.querySelectorAll(".box");
+        let box1 = document.querySelector(".box1");
+        let box2 = document.querySelector(".box2");
+        let box3 = document.querySelector(".box3");
+        let box4 = document.querySelector(".box4");
+        let box5 = document.querySelector(".box5");
+        let box6 = document.querySelector(".box6");
+        let box7 = document.querySelector(".box7");
+        let box8 = document.querySelector(".box8");
+        let box9 = document.querySelector(".box9");
+        let score = document.querySelector(".score");
+        console.log(box)
+        console.dir(score)
+        let count = 0;
+        box.forEach(function (element) {
+            element.addEventListener("click", function () {
+                if (element.children.length > 0) return;
+                if (count % 2 == 0) {
+                    let crossclone = cross.cloneNode(true)
+                    crossclone.style.display = "flex";
+                    element.appendChild(crossclone);
+                    count = count + 1
+                    console.log(count)
+                }
+                else {
+                    let circleclone = circle.cloneNode(true);
+                    circleclone.style.display = "flex";
+                    element.appendChild(circleclone)
+                    count = count + 1;
+                    console.log(count)
+                }
+                if (count >= 5) {
+                    if (box1.children.length > 0 && box2.children.length > 0 && box3.children.length > 0 && box1.children[0].classList.contains("cross") && box2.children[0].classList.contains("cross") && box3.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Cross Won !!!";
+                    }
+                    if (box4.children.length > 0 && box5.children.length > 0 && box6.children.length > 0 && box4.children[0].classList.contains("cross") && box5.children[0].classList.contains("cross") && box6.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Cross Won !!!";
+                    }
+                    if (box7.children.length > 0 && box8.children.length > 0 && box9.children.length > 0 && box7.children[0].classList.contains("cross") && box8.children[0].classList.contains("cross") && box9.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Cross Won !!!";
+                    }
+                    if (box1.children.length > 0 && box5.children.length > 0 && box9.children.length > 0 && box1.children[0].classList.contains("cross") && box5.children[0].classList.contains("cross") && box9.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Cross Won !!!";
+                    }
+                    if (box3.children.length > 0 && box5.children.length > 0 && box7.children.length > 0 && box3.children[0].classList.contains("cross") && box5.children[0].classList.contains("cross") && box7.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Cross Won !!!";
+                    }
+                    if (box1.children.length > 0 && box4.children.length > 0 && box7.children.length > 0 && box1.children[0].classList.contains("cross") && box4.children[0].classList.contains("cross") && box7.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box2.children.length > 0 && box5.children.length > 0 && box8.children.length > 0 && box2.children[0].classList.contains("cross") && box5.children[0].classList.contains("cross") && box8.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box3.children.length > 0 && box6.children.length > 0 && box9.children.length > 0 && box3.children[0].classList.contains("cross") && box6.children[0].classList.contains("cross") && box9.children[0].classList.contains("cross")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box1.children.length > 0 && box2.children.length > 0 && box3.children.length > 0 && box1.children[0].classList.contains("circle") && box2.children[0].classList.contains("circle") && box3.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box4.children.length > 0 && box5.children.length > 0 && box6.children.length > 0 && box4.children[0].classList.contains("circle") && box5.children[0].classList.contains("circle") && box6.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box7.children.length > 0 && box8.children.length > 0 && box9.children.length > 0 && box7.children[0].classList.contains("circle") && box8.children[0].classList.contains("circle") && box9.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box1.children.length > 0 && box5.children.length > 0 && box9.children.length > 0 && box1.children[0].classList.contains("circle") && box5.children[0].classList.contains("circle") && box9.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box3.children.length > 0 && box5.children.length > 0 && box7.children.length > 0 && box3.children[0].classList.contains("circle") && box5.children[0].classList.contains("circle") && box7.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box1.children.length > 0 && box4.children.length > 0 && box7.children.length > 0 && box1.children[0].classList.contains("circle") && box4.children[0].classList.contains("circle") && box7.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box2.children.length > 0 && box5.children.length > 0 && box8.children.length > 0 && box2.children[0].classList.contains("circle") && box5.children[0].classList.contains("circle") && box8.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if (box3.children.length > 0 && box6.children.length > 0 && box9.children.length > 0 && box3.children[0].classList.contains("circle") && box6.children[0].classList.contains("circle") && box9.children[0].classList.contains("circle")) {
+                        score.textContent = "Score : Circle Won !!!"
+                    }
+                    if(count == 9){
+                        score.textContent = "Score : Draw !!!"
+                    }
+
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
